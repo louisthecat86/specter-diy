@@ -312,7 +312,7 @@ class FlashKeyStore(RAMKeyStore):
                  "Give each seed a unique name!",
             suggestion="",
     ):
-        scr = InputScreen(title, note, suggestion, min_length=1, strip=True)
+        scr = InputScreen(t(title), t(note), suggestion, min_length=1, strip=True)
         await self.show(scr)
         return scr.get_value()
 
@@ -321,10 +321,10 @@ class FlashKeyStore(RAMKeyStore):
         """Manage storage, return True if new key was loaded"""
         buttons = [
             # id, text
-            (None, title),
-            (0, "Save key"),
-            (1, "Load key"),
-            (2, "Delete key"),
+            (None, t(title)),
+            (0, t("Save key")),
+            (1, t("Load key")),
+            (2, t("Delete key")),
         ]
 
         # we stay in this menu until back is pressed
@@ -344,11 +344,11 @@ class FlashKeyStore(RAMKeyStore):
             elif menuitem == 1:
                 if await self.load_mnemonic():
                     await self.show(
-                        Alert("Success!", "Your key is loaded.", button_text="OK")
+                        Alert(t("Success!"), t("Your key is loaded."), button_text="OK")
                     )
                 return True
             elif menuitem == 2:
                 if await self.delete_mnemonic():
                     await self.show(
-                        Alert("Success!", "Your key is deleted.", button_text="OK")
+                        Alert(t("Success!"), t("Your key is deleted."), button_text="OK")
                     )
