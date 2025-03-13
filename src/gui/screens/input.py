@@ -213,15 +213,15 @@ class PinScreen(Screen):
         super().__init__()
         self.title = add_label(t(title), scr=self, y=PADDING, style="title")
         if subtitle is not None:
-            lbl = add_label(subtitle, scr=self, style="hint")
+            lbl = add_label(t(subtitle), scr=self, style="hint")
             lbl.set_recolor(True)
             lbl.align(self.title, lv.ALIGN.OUT_BOTTOM_MID, 0, 10)
         if note is not None:
-            lbl = add_label(note, scr=self, style="hint")
+            lbl = add_label(t(note), scr=self, style="hint")
             lbl.align(self.title, lv.ALIGN.OUT_BOTTOM_MID, 0, 90)
         self.get_word = get_word
         if get_word is not None:
-            self.words = add_label(get_word(b""), scr=self)
+            self.words = add_label(t(get_word(b"")), scr=self)
             self.words.align(self.title, lv.ALIGN.OUT_BOTTOM_MID, 0, 120)
         btnm = lv.btnm(self)
         # shuffle numbers to make sure
