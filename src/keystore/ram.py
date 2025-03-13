@@ -306,17 +306,17 @@ class RAMKeyStore(KeyStore):
         """
 
         scr = PinScreen(
-            title=title,
-            note="Do you recognize these words?",
+            title=t(title),
+            note=t("Do you recognize these words?"),
             get_word=self.get_auth_word,
-            subtitle=self.pin_subtitle,
+            subtitle=t(self.pin_subtitle),
             with_cancel=with_cancel
         )
         return await self.show(scr)
 
     @property
     def pin_subtitle(self):
-        return "using #%s %s #" % (type(self).COLOR, type(self).NAME.lower())
+        return t("using #%s %s #") % (type(self).COLOR, type(self).NAME.lower())
 
 
     async def setup_pin(self, get_word=None):
@@ -326,18 +326,18 @@ class RAMKeyStore(KeyStore):
         If not -> try again
         """
         scr = PinScreen(
-            title="Choose your PIN code",
-            note="Remember these words," "they will stay the same on this device.",
+            title=t("Choose your PIN code"),
+            note=t("Remember these words," "they will stay the same on this device."),
             get_word=self.get_auth_word,
-            subtitle=self.pin_subtitle,
+            subtitle=t(self.pin_subtitle),
         )
         pin1 = await self.show(scr)
 
         scr = PinScreen(
-            title="Confirm your PIN code",
-            note="Remember these words," "they will stay the same on this device.",
+            title=t("Confirm your PIN code"),
+            note=t("Remember these words," "they will stay the same on this device."),
             get_word=self.get_auth_word,
-            subtitle=self.pin_subtitle,
+            subtitle=t(self.pin_subtitle),
         )
         pin2 = await self.show(scr)
 
@@ -345,7 +345,7 @@ class RAMKeyStore(KeyStore):
         if pin1 == pin2:
             return pin1
         # if not - show an error
-        await self.show(Alert("Error!", "PIN codes are different!"))
+        await self.show(Alert(t("Error!"), t("PIN codes are different!")))
         return await self.setup_pin(get_word)
 
     async def change_pin(self):
