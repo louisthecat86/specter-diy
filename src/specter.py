@@ -23,9 +23,6 @@ from gui.screens.mnemonic import MnemonicPrompt
 from helpers import gen_mnemonic, fix_mnemonic
 from errors import BaseError
 
-# Import the necessary functions from common
-import lvgl as lv
-from gui.common import add_button, add_language_selection_button
 
 class SpecterError(BaseError):
     NAME = "Specter error"
@@ -506,6 +503,7 @@ class Specter:
             (None, "Global settings"),
         ]
         if hasattr(self.keystore, "lock"):
+            buttons.extend([(888, "Select language")])
             buttons.extend([(777, "Change PIN code")])
         buttons += [
             (456, "Reboot"),
