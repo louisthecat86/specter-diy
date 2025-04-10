@@ -518,7 +518,6 @@ class Specter:
             if menuitem == 789:
                 await self.change_language()
             elif menuitem == 255:
-            if menuitem == 255:
                 return
             elif menuitem == 3:
                 await self.experimental_settings()
@@ -529,6 +528,7 @@ class Specter:
                 ):
                     reboot()
                 return
+                
             # WIPE
             elif menuitem == 123:
                 if await self.gui.prompt(
