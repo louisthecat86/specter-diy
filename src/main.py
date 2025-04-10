@@ -11,6 +11,7 @@ import platform
 from helpers import load_apps
 from app import BaseApp
 import display
+from gui.common import *
 
 def main(apps=None, network="main", keystore_cls=None):
     """
